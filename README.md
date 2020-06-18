@@ -17,7 +17,7 @@ USB/PCIe/M.2 Accelerator.
     git clone https://github.com/namburger/social-distance-violation-detector
     ```
 
-2.  Install the GStreamer libraries (if you're using the Coral Dev Board, you can skip this):
+2.  Install requirements (this should works for most linux platforms):
 
     ```
     ./install_requirements.sh
