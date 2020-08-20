@@ -60,13 +60,16 @@ class Person():
             p.violates = True
 
     def draw(self, dwg):
-        color = 'red' if self.violates else 'green'
-        label = 'Violation!' if self.violates else 'Good Citizen!'
-        shadow_text(dwg, self.x, self.y-5, label)
+        color = 'red' if self.violates else 'lightgreen'
+        label = 'Too Close' if self.violates else 'Good Distance'
         dwg.add(svgwrite.shapes.Circle(center=(self.centroid.x, self.centroid.y), 
-                        r=5, fill='none', stroke=color))
+                        r=5, fill='none', stroke=color, stroke_width='3'))
         dwg.add(dwg.rect(insert=(self.x, self.y), size=(self.width, self.height),
-                        fill='none', stroke=color, stroke_width='2'))
+                        fill='none', stroke=color, stroke_width='5'))
+        dwg.add(dwg.rect(insert=(self.x, self.y - 25), size=(self.width, 25),
+                        fill=color, stroke=color, stroke_width='5'))
+        shadow_text(dwg, self.x, self.y-5, label, 25)
+
 
 def shadow_text(dwg, x, y, text, font_size=15):
     dwg.add(dwg.text(text, insert=(x+1, y+1), fill='black', font_size=font_size))
@@ -130,7 +133,7 @@ def get_output(interpreter, score_threshold, top_k, image_scale=1.0):
 
 def main():
     default_model_dir = 'model'
-    default_model = 'mobilenet_ssd_v2_coco_quant_postprocess_edgetpu.tflite'
+    default_model = 'ssdlite_mobiledet_quant_postprocess_edgetpu.tflite'
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', help='.tflite model path',
                         default=os.path.join(default_model_dir,default_model))
@@ -151,7 +154,7 @@ def main():
     w, h, _ = common.input_image_size(interpreter)
     inference_size = (w, h)
     # Average fps over last 30 frames.
-    fps_counter  = common.avg_fps_counter(30)
+    fps_counter  = common.avg_fps_counter(100)
 
     def user_callback(input_tensor, src_size, inference_box):
       nonlocal fps_counter
