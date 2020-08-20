@@ -8,6 +8,9 @@ This code works on Linux using a webcam, Raspberry Pi with the Pi Camera, and on
 Board using the Coral Camera or a webcam. For the first two, you also need a Coral
 USB/PCIe/M.2 Accelerator.
 
+<div align="center">
+  <img src="https://github.com/Namburger/social-distancing-violator-detector/blob/master/assets/sdv_ssdlite_mobiledet_resized.gif" width="450">
+</div>
 
 ## Set up your device
 
