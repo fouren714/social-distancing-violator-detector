@@ -5,8 +5,8 @@ and codes from [google-coral/examples-camera](https://github.com/google-coral/ex
 detect social distancing violatiors.
 
 This code works on Linux using a webcam, Raspberry Pi with the Pi Camera, and on the Coral Dev
-Board using the Coral Camera or a webcam. For the first two, you also need a Coral
-USB/PCIe/M.2 Accelerator.
+Board using the Coral Camera or a webcam. 
+**Note:** You'll need a Coral [USB/PCIe M.2 Accelerator](https://coral.ai/products/) since running this on CPU is too slow and won't be fast enough for real time. 
 
 <div align="center">
   <img src="https://github.com/Namburger/social-distancing-violator-detector/blob/master/assets/sdv_ssdlite_mobiledet_resized.gif" width="450">
