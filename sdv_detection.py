@@ -153,15 +153,15 @@ def main():
     interpreter = tflite.Interpreter(args.model)
     interpreter.allocate_tensors()
 
-    w, h, _ = common.input_image_size(interpreter)
+    w, h, _ = tflite.input_image_size(interpreter)
     inference_size = (w, h)
     # Average fps over last 30 frames.
-    fps_counter  = common.avg_fps_counter(100)
+    fps_counter  = tflite.avg_fps_counter(100)
 
     def user_callback(input_tensor, src_size, inference_box):
       nonlocal fps_counter
       start_time = time.monotonic()
-      common.set_input(interpreter, input_tensor)
+      tflite.set_input(interpreter, input_tensor)
       interpreter.invoke()
       # For larger input image sizes, use the edgetpu.classification.engine for better performance
       objs = get_output(interpreter, args.threshold, args.top_k)
