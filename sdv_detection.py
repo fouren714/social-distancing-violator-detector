@@ -34,7 +34,7 @@ import svgwrite
 import time
 import math
 
-import tflite_runtime.interperter as tflite
+import tflite_runtime.interpreter as tflite
 
 Object = collections.namedtuple('Object', ['id', 'score', 'bbox'])
 
