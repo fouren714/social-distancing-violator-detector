@@ -150,7 +150,7 @@ def main():
                         choices=['raw', 'h264', 'jpeg'])
     args = parser.parse_args()
 
-    interpreter = tflite.Interperter(args.model)
+    interpreter = tflite.Interpreter(args.model)
     interpreter.allocate_tensors()
 
     w, h, _ = common.input_image_size(interpreter)
