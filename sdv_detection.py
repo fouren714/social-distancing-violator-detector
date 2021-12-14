@@ -33,6 +33,8 @@ import re
 import svgwrite
 import time
 import math
+import tensorflow as tf
+import tflite_runtime.interperter as tflite
 
 Object = collections.namedtuple('Object', ['id', 'score', 'bbox'])
 
@@ -148,7 +150,7 @@ def main():
                         choices=['raw', 'h264', 'jpeg'])
     args = parser.parse_args()
 
-    interpreter = common.make_interpreter(args.model)
+    interpreter = tflite.Interperter(args.model)
     interpreter.allocate_tensors()
 
     w, h, _ = common.input_image_size(interpreter)
